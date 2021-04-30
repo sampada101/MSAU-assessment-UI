@@ -1,0 +1,36 @@
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h3>
+              <span>  Add a quiz </span>
+          </h3>
+        </mat-card-title>
+      </mat-card-header>
+      <form #quizForm="ngForm" (submit)="saved.emit($event)">
+        <mat-card-content>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Title" type="text" name="title" required>
+            </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Description" type="text" name="description" required
+          
+              ></textarea>
+          </mat-form-field>
+
+            <app-search (keyPress)="filterQuestions($event)"></app-search>
+          <div class="questionList__container">
+            <section *ngFor="let question of filteredQuestions;" class="questionList__list">
+              <mat-checkbox [name]="question.id" [value]="question.id">
+                  {{question.description}}
+                </mat-checkbox>
+            </section>
+          </div>
+          
+        </mat-card-content>
+        <mat-card-actions>
+          <button type="submit" mat-button color="primary" [disabled]="!quizForm.form.valid" style="background-color: #c95405;color: white; border: #c95405;">Save</button>
+          <button type="button" mat-button (click)="canceled.emit()" style="background-color: black;color: white;">Cancel</button>
+        </mat-card-actions>
+      </form>
+    </mat-card>

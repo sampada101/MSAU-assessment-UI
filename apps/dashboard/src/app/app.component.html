@@ -1,0 +1,45 @@
+<mat-toolbar style="background-color: black;color: white; height: 2px;" class="mat-elevation-z4"></mat-toolbar>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 75px;">
+  <a class="navbar-brand" href="#">
+    <img src="./assets/logoaccolite.png" style="height: 50px;">
+    <span *ngIf="currUser; else elseDashboard"> {{currUser.name}}</span>
+      <ng-template #elseDashboard>
+        
+        <span> MS AU Accolite'21</span>
+        </ng-template>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <a mat-button class="nav-link"
+        *ngFor="let link of links"
+        [routerLink]="link.path" routerLinkActive="active">
+          {{link.title}}
+      </a>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <span *ngIf="currUser; else elseLogin">
+    <button class="btn btn-primary" (click)="logout();$event.stopImmediatePropagation()"style="border-color: #c95405;background-color: #c95405;color: white;" >Logout</button>
+  </span>
+    <ng-template #elseLogin>
+    <span>
+      <a class="btn btn-primary" style="border-color: #c95405;background-color: #c95405;color: white" href="http://localhost:8080/oauth2/authorization/google" role="button">Login with Google</a>
+    </span>
+  </ng-template>
+    </form>
+  </div>
+</nav>
+<mat-toolbar style="background-color: black;color: white; height: 2px;" class="mat-elevation-z4"></mat-toolbar>
+
+<!-- </mat-toolbar> -->
+
+<mat-sidenav-container style="margin-top: 30px;">
+
+  <div class="app-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-sidenav-container>

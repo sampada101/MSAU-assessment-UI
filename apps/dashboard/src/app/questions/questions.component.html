@@ -1,0 +1,19 @@
+<div class="container" >
+  <div class="col-50" style="background-color:#c95405 ;">
+      <app-questions-details
+      [currQuestion] = "selectedQuestion"
+      (saved) = "createQuestion($event)"
+      (addedOption) = "addOption()"
+      (canceled) = "resetQuestion()">
+    </app-questions-details>
+    </div>
+    <div class="col-50">
+      <app-questions-list
+      [questions] = "filteredQuestions"
+      (selected) = "selectQuestion($event)"
+      (searched) = "searchQuestion($event)">
+    </app-questions-list>
+    </div>
+
+    
+  </div>

@@ -1,0 +1,42 @@
+<mat-card>
+
+    <!-- <app-search (keyPress)="searched.emit($event)"></app-search> -->
+
+    <mat-card-header>
+      <mat-card-title>
+        <h3>Your Projects</h3>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <app-search (keyPress)="searched.emit($event)"></app-search>
+      <table class="table table-striped">
+  <thead style="background-color: black;color: white;">
+ 
+    <tr >
+      
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody style="background-color:white;color: black">
+    <tr *ngFor="let project of projects; let i = index">
+      <td>{{project.title}}</td>
+      <td>{{project.description}}</td>
+      <td>
+        <span>
+          <a style="cursor: pointer;" *ngIf="project.user.id === currUser.id" (click)="deleted.emit(project);$event.stopImmediatePropagation()">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </span>
+        <span>
+          <a style="cursor: pointer;" (click)="selected.emit(project)">
+            <mat-icon>edit</mat-icon>
+          </a>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+    </mat-card-content>
+  </mat-card>

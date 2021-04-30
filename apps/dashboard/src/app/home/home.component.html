@@ -1,0 +1,78 @@
+<div style="width: 100%; height: 100%">
+    <mat-grid-list cols="2" rowHeight="1:4">
+        
+     
+<mat-grid-tile>
+   
+            <mat-card *ngIf="currUser; else loginScreen" class="full-width" style="height: 100%" >
+                <mat-card-header>
+                    <mat-card-title><h2 >Current User</h2>
+                     <img src="./assets/details.png" style="height: 175px;width: auto;"></mat-card-title>
+                   
+                </mat-card-header>
+                 
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                           
+                            <div mat-line> <img src="./assets/profile.png" height="60px">&nbsp;Name : <strong> {{currUser.name}}</strong></div>
+                        </mat-list-item>
+                        <mat-list-item>
+                           
+                            <div mat-line><img src="./assets/mail.png" height="60px">&nbsp;Email : <strong>{{currUser.email}}</strong></div>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+
+        </mat-grid-tile>
+
+        <mat-grid-tile >
+            
+            <mat-card *ngIf="currUser;" class="goToPage" style="height: 100%;">     
+                   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#features"  style="border-width: 1px!important;border-color: black;background-color: white;color: black" >Click to view all features </button>
+                         
+                <div class="row" >
+                    <div *ngFor="let feature of data" class="col">
+                        <div id="features" class="card collapse" style="width: 250px;margin-bottom: 50px;">
+                             <div class="card-body">
+                                <h5 class="card-title">{{feature.title}}</h5>
+                                <p class="card-text">{{feature.line1}}</p>
+                                <p class="card-text">{{feature.line2}}</p>
+                                <button type="button" mat-raised-button style="color: black; background-color: white;" [disabled]="!currUser"
+                                        (click)="goToPage(feature.link)">{{feature.title}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+</div>
+<ng-template #loginScreen >
+                <mat-card class="full-width"  style="height: 100%;background-color:white;color:black" >
+                    <mat-card-header>
+                        <mat-card-title><h3>Login</h3></mat-card-title>
+                        
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-list>
+                            <mat-list-item>
+                              
+                                <div mat-line><strong>Login to access features of MS AU portal</strong></div>
+                                <img src="./assets/logoaccolite2.png">
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <mat-list>
+                            <mat-list-item>
+                                <img src="./assets/google.png" style="height: 35px;margin-right: 8px;">
+                                 <a class="btn btn-primary" style="background-color: #c95405;color: white; border: #c95405;" href="http://localhost:8080/oauth2/authorization/google" role="button">Login with Google</a>
+ 
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card-actions>
+                </mat-card>
+            </ng-template>
